@@ -1,5 +1,5 @@
 import { CreatePostRequestDTO } from "../dtos/createPostRequestDTO.js";
-import { createPost as createPostService } from "../services/postService.js";
+import { createPost as createPostService,getPostsByUser as getPostsByUserService } from "../services/postService.js";
 
 export const createPost = async (req,res)=>{
     try {
@@ -14,5 +14,16 @@ export const createPost = async (req,res)=>{
 
     } catch (error) {
         return res.status(400).json({ message: error.message });
+    }
+}
+
+export const getPostsByUser = async(req,res) => {
+    try {
+         const userId = req.user.id;
+         const userPosts = await getPostsByUserService(userId);
+          return res.status(200).json(userPosts);
+
+    } catch (error) {
+         return res.status(400).json({ message: error.message });
     }
 }
