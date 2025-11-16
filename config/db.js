@@ -11,19 +11,25 @@ const connection = mysql.createConnection({
   multipleStatements: true
 });
 
-const sql = fs.readFileSync("./config/db.sql", "utf8");
-
-connection.query(sql, (err) => {
+connection.connect((err) => {
   if (err) {
-    console.error("Error running SQL script:", err);
-  } else {
-    console.log("Database initialized!");
+    console.error("MySQL Connection Failed:", err);
+    return;
   }
+
+  console.log("Connected to MySQL");
+
+  
+  const sql = fs.readFileSync("./config/db.sql", "utf8");
+
+  connection.query(sql, (err) => {
+    if (err) {
+      console.error("Error initializing database:", err);
+    } else {
+      console.log("Database initialized successfully");
+    }
+  });
 });
 
-connection.connect(err => {
-  if (err) console.error('DB connection failed:', err);
-  else console.log('Connected to MySQL');
-});
 
 export default connection;
