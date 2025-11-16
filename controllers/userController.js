@@ -32,3 +32,11 @@ export const loginUser = async (req,res) =>{
     }
 }
 
+export const updateUser = async (req,res) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+}
+
