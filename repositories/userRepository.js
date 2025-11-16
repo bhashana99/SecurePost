@@ -5,7 +5,7 @@ import { User } from "../model/userModel.js";
 export const findUserByEmail = async (email) => {
 
   const [rows] = await connection.execute(
-    'SELECT * FROM users WHERE email = ?',
+    'SELECT * FROM users WHERE email = ? LIMIT 1',
     [email]
   );
 
