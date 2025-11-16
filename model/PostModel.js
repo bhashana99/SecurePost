@@ -1,4 +1,4 @@
-export class Post {
+class Post {
   constructor({ id, user_id, title, content, created_at, updated_at }) {
     this.id = id;
     this.userId = user_id;
@@ -8,3 +8,5 @@ export class Post {
     this.updatedAt = updated_at;
   }
 }
+
+export default Post;
